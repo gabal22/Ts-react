@@ -1,4 +1,4 @@
-type langTypes =  {
+export type langTypes =  {
     name: string,
     backgroundColor: string,
     color: string,

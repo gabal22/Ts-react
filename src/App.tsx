@@ -49,24 +49,6 @@ export default function AssemblyEndgame() {
         setGuessedLetters([])
     }
 
-    const languageElements = languages.map((lang, index) => {
-        const isLanguageLost = index < wrongGuessCount
-        const styles = {
-            backgroundColor: lang.backgroundColor,
-            color: lang.color
-        }
-        const className = clsx("chip", isLanguageLost && "lost")
-        return (
-            <span
-                className={className}
-                style={styles}
-                key={lang.name}
-            >
-                {lang.name}
-            </span>
-        )
-    })
-
     const letterElements = currentWord.split("").map((letter, index) => {
         const shouldRevealLetter = isGameLost || guessedLetters.includes(letter)
         const letterClassName = clsx(
@@ -92,7 +74,10 @@ export default function AssemblyEndgame() {
               wrongGuessCount={wrongGuessCount}
             />
             
-            <LanguageChips languageEle={languageElements} />
+            <LanguageChips
+                languages={languages}
+                wrongGuessCount={wrongGuessCount}
+            />
 
             <section className="word">
                 {letterElements}
