@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { clsx } from "clsx"
 import { languages } from "./languages"
 import { getRandomWord } from "./utils"
 
@@ -8,6 +7,7 @@ import { ConfettiContainer } from "./components/ConfettiContainer"
 import { GameStatus } from "./components/GameStatus"
 import { LanguageChips } from "./components/Languagechips"
 import { AriaStatus } from "./components/AriaStatus"
+import { WordLetters } from "./components/WordLetters"
 import { Keyboard } from "./components/Keyboard"
 import { GameButton } from "./components/GameButton"
 
@@ -49,18 +49,6 @@ export default function AssemblyEndgame() {
         setGuessedLetters([])
     }
 
-    const letterElements = currentWord.split("").map((letter, index) => {
-        const shouldRevealLetter = isGameLost || guessedLetters.includes(letter)
-        const letterClassName = clsx(
-            isGameLost && !guessedLetters.includes(letter) && "missed-letter"
-        )
-        return (
-            <span key={index} className={letterClassName}>
-                {shouldRevealLetter ? letter.toUpperCase() : ""}
-            </span>
-        )
-    })
-
     return (
         <main>
             <ConfettiContainer isGameWon={isGameWon} />
@@ -79,9 +67,11 @@ export default function AssemblyEndgame() {
                 wrongGuessCount={wrongGuessCount}
             />
 
-            <section className="word">
-                {letterElements}
-            </section>
+            <WordLetters 
+                currentWord={currentWord}
+                isGameLost={isGameLost}
+                guessedLetters={guessedLetters}
+            />
 
             {/* Combined visually-hidden aria-live region for status updates */}
             <AriaStatus
