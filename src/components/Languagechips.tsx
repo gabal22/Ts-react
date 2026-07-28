@@ -1,6 +1,6 @@
 
 interface ElementsProps {
-  languageEle: React.JSX.Element[];
+  languageEle: React.ReactNode;
 }
 
 export const LanguageChips = ({languageEle}: ElementsProps) => {

@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { getFarewellText } from "../utils";
 import { languages } from "../languages";
 
-interface StatusProps {
+interface GameStatusProps {
     isGameOver: boolean;
     isLastGuessIncorrect: string | boolean;
     isGameWon: boolean;
@@ -10,7 +10,7 @@ interface StatusProps {
     wrongGuessCount: number;
 }
 
-export const GameStatus = ({isGameOver, isLastGuessIncorrect, isGameWon, isGameLost, wrongGuessCount}: StatusProps) => {
+export const GameStatus = ({isGameOver, isLastGuessIncorrect, isGameWon, isGameLost, wrongGuessCount}: GameStatusProps) => {
 
     const gameStatusClass = clsx("game-status", {
         won: isGameWon,
